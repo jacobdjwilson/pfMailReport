@@ -8,7 +8,7 @@ This project is not affiliated with pfSense or Rubicon Communications, LLC (Netg
 
 ## Getting Started
 Utilizing pfMailReport is simple, first ensure you have the mail report package installed through the WebUI package management system: ` System > Package Manager > Available Packages > mailreport `
-Additionally, from the WebUI you will need to ensure your mail relay has been configured:  ` System > Advanced > Notifications `
+Additionally, from the WebUI you will need to ensure your mail relay has been configured.  ` System > Advanced > Notifications `
 
 Navigate to the command prompt ` Diagnostics > Command Prompt ` and issue the following command:
 
