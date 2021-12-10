@@ -1,4 +1,4 @@
-![pfMailReport Logo](https://github.com/jacobdjwilson/pfMailReport/blob/main/images/logo.png)
+![pfMailReport Logo](https://github.com/jacobdjwilson/pfMailReport/blob/main/images/logo.png)  
 # pfMailReport
 This project wraps pfSense command output into a rich format HTML suitable for email via the `mailreport` package. Currently this project supports pfSense version 2.5.x, users can install this package and script through the WebUI.
 
@@ -25,7 +25,7 @@ sockstat -4l | awk '{print $1, $2, $6, $7}' | uniq | { cat ; echo ; } | sh /usr/
 This example passes the output of ‘sockstat’ IPv4 ports that are listening for incoming connections to the pfMailReport script, with the t (table) flag and secondary string argument ‘Listening Ports’ that will be parsed as the section header.
 
 ## Command Options
-![pfMailReport Command Output Options](https://github.com/jacobdjwilson/pfMailReport/blob/main/images/output_format.png)
+![pfMailReport Command Output Options](https://github.com/jacobdjwilson/pfMailReport/blob/main/images/output_format.png)  
 Usage: cmd [-t] table columns [-r] table rows [-l] ordered list
 
 * -t table  
