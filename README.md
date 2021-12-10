@@ -35,7 +35,7 @@ An HTML formatted table that parses ONLY rows (new lines) and avoids columns com
 * -l list  
 An HTML ordered list that parses rows as list items. No header or column parsing is included with this option.
 
-* ‘Header String’
+* ‘Header String’  
 The secondary argument, passed as a string, will be utilized as a HTML section header `<h1>` before the table. Example:
 
 ```
