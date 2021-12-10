@@ -19,5 +19,5 @@ Now you’re ready to utilize pfMailReport by navigating to `Status > Email Repo
 Paste the following `Listening Ports` command example:
 
 ```
-sockstat -4l | awk '{print $1, $2, $6, $7}' | uniq | { cat ; echo ; } | sh /usr/local/bin/pfMailReport.sh -t 'Listening Ports and Processes'
+sockstat -4l | awk '{print $1, $2, $6, $7}' | uniq | { cat ; echo ; } | sh /usr/local/bin/pfMailReport.sh -t 'Listening Ports'
 ```
