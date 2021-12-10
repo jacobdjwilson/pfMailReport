@@ -11,7 +11,7 @@ Additionally, from the WebUI you will need to ensure your mail relay has been co
 
 Navigate to the command prompt ` Diagnostics > Command Prompt ` and issue the following command:
 
-```sh
+```
 curl -LJ https://raw.githubusercontent.com/jacobdjwilson/pfMailReport/main/pfMailReport.sh -o /usr/local/bin/pfMailReport.sh
 ```
 
