@@ -21,3 +21,22 @@ Paste the following `Listening Ports` command example:
 ```
 sockstat -4l | awk '{print $1, $2, $6, $7}' | uniq | { cat ; echo ; } | sh /usr/local/bin/pfMailReport.sh -t 'Listening Ports'
 ```
+This example passes the output of ‘sockstat’ IPv4 ports that are listening for incoming connections to the pfMailReport script, with the t (table) flag and secondary string argument ‘Listening Ports’ that will be parsed as the section header.
+
+## Command Options
+Usage: cmd [-t] table columns [-r] table rows [-l] ordered list
+
+-t table
+An HTML formatted table that parses columns (tabs or spaces) and rows (new lines). By default the first line of the command output will be used for a table header.
+
+-r row
+An HTML formatted table that parses ONLY rows (new lines) and avoids columns completely. This option still parses the first line of the command output for a table header.
+
+-l list
+An HTML ordered list that parses rows as list items. No header or column parsing is included with this option.
+
+‘Header String’
+The secondary argument, passed as a string, will be utilized as a HTML section header <h1> before the table. Example:
+```
+echo log_file.log | { cat ; echo ; } | sh /usr/local/bin/pfMailReport.sh -r 'Log Name'
+```
