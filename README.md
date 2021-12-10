@@ -11,11 +11,13 @@ Additionally, from the WebUI you will need to ensure your mail relay has been co
 
 Navigate to the command prompt ` Diagnostics > Command Prompt ` and issue the following command:
 
-```sh curl -LJ https://raw.githubusercontent.com/jacobdjwilson/pfMailReport/main/pfMailReport.sh -o /usr/local/bin/pfMailReport.sh
+```sh
+curl -LJ https://raw.githubusercontent.com/jacobdjwilson/pfMailReport/main/pfMailReport.sh -o /usr/local/bin/pfMailReport.sh
 ```
 
 Now you’re ready to utilize pfMailReport by navigating to `Status > Email Reports ` and adding a New Report. Configure your description and desired frequency, then select Add New Command. Add as many examples from the [command](https://github.com/jacobdjwilson/pfMailReport/tree/main/commands) directory of this project, or create your own. For this example we’ll use a simple command without dependencies.
 Paste the following `Listening Ports` command example:
 
-```sh sockstat -4l | awk '{print $1, $2, $6, $7}' | uniq | { cat ; echo ; } | sh /usr/local/bin/pfMailReport.sh -t 'Listening Ports and Processes'
+```sh
+sockstat -4l | awk '{print $1, $2, $6, $7}' | uniq | { cat ; echo ; } | sh /usr/local/bin/pfMailReport.sh -t 'Listening Ports and Processes'
 ```
