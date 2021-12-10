@@ -16,7 +16,7 @@ Navigate to the command prompt ` Diagnostics > Command Prompt ` and issue the fo
 curl -LJ https://raw.githubusercontent.com/jacobdjwilson/pfMailReport/main/pfMailReport.sh -o /usr/local/bin/pfMailReport.sh
 ```
 
-Now you’re ready to utilize pfMailReport by navigating to `Status > Email Reports ` and adding a New Report. Configure your description and desired frequency, then select Add New Command. Add as many examples from the [command](https://github.com/jacobdjwilson/pfMailReport/tree/main/commands) directory of this project, or create your own. For this example we’ll use a simple command without dependencies.
+Now you’re ready to utilize pfMailReport by navigating to `Status > Email Reports ` and adding a *New Report*. Configure your description and desired frequency, then select *Add New Command*. Add as many examples from the [command](https://github.com/jacobdjwilson/pfMailReport/tree/main/commands) directory of this project, or create your own. For this example we’ll use a simple command without dependencies.
 Paste the following `Listening Ports` command example:
 
 ```
