@@ -41,3 +41,7 @@ The secondary argument, passed as a string, will be utilized as a HTML section h
 ```
 echo log_file.log | { cat ; echo ; } | sh /usr/local/bin/pfMailReport.sh -r 'Log Name'
 ```
+
+## Future Development
+* Ability to specify output stream delimiter
+* Visual data representations ie. graphing
