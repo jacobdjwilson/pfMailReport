@@ -26,13 +26,13 @@ This example passes the output of ‘sockstat’ IPv4 ports that are listening f
 ## Command Options
 Usage: cmd [-t] table columns [-r] table rows [-l] ordered list
 
-- t table  
+* -t table  
 An HTML formatted table that parses columns (tabs or spaces) and rows (new lines). By default the first line of the command output will be used for a table header.
 
-- r row  
+* -r row  
 An HTML formatted table that parses ONLY rows (new lines) and avoids columns completely. This option still parses the first line of the command output for a table header.
 
-- l list  
+* -l list  
 An HTML ordered list that parses rows as list items. No header or column parsing is included with this option.
 
 ‘Header String’
