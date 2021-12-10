@@ -20,9 +20,12 @@ Now you’re ready to utilize pfMailReport by navigating to `Status > Email Repo
 Paste the following `Listening Ports` command example:
 
 ```
-sockstat -4l | awk '{print $1, $2, $6, $7}' | uniq | { cat ; echo ; } | sh /usr/local/bin/pfMailReport.sh -t 'Listening Ports'
+sockstat -4l | awk '{print $1, $2, $6, $7}' | uniq | { cat ; echo ; } | sh /usr/local/bin/pfMailReport.sh -t 'Listening Ports and Processes'
 ```
-This example passes the output of ‘sockstat’ IPv4 ports that are listening for incoming connections to the pfMailReport script, with the t (table) flag and secondary string argument ‘Listening Ports’ that will be parsed as the section header.
+This example passes the output of ‘sockstat’ IPv4 ports that are listening for incoming connections to the pfMailReport script, with the t (table) flag and secondary string argument ‘Listening Ports and Processes’ that will be parsed as the section header.
+
+Below is the example command output sent via email:
+![pfMailReport Command Output Example](https://github.com/jacobdjwilson/pfMailReport/blob/main/images/output_example.png)  
 
 ## Command Options
 ![pfMailReport Command Output Options](https://github.com/jacobdjwilson/pfMailReport/blob/main/images/output_format.png)  
@@ -42,7 +45,7 @@ The secondary argument, passed as a string, will be utilized as a HTML section h
 
 ```
 echo log_file.log | { cat ; echo ; } | sh /usr/local/bin/pfMailReport.sh -r 'Log Name'
-```
+```  
 
 ## Future Development
 * Ability to specify output stream delimiter
