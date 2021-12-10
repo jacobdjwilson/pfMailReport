@@ -1,6 +1,6 @@
 ![pfMailReport Logo](https://github.com/jacobdjwilson/pfMailReport/blob/main/images/logo.png)  
 # pfMailReport
-This project wraps ![pfSense](https://github.com/pfsense) command output into a rich format HTML suitable for email via the `mailreport` package. Currently this project supports pfSense version 2.5.x, users can install this package and script through the WebUI.
+This project wraps [pfSense](https://github.com/pfsense) command output into a rich format HTML suitable for email via the `mailreport` package. Currently this project supports pfSense version 2.5.x, users can install this package and script through the WebUI.
 
 This script is designed to gather tabulated command output from the default FreeBSD /bin/sh shell. The design has been structured in a way to be extensible and modular. Many command examples include conversion from CSV and other formats. Output to HTML format follows [bootstrap](https://github.com/twbs/bootstrap) version 5 design guidelines.
 
