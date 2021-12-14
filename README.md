@@ -44,7 +44,7 @@ An HTML ordered list that parses rows as list items. No header or column parsing
 The secondary argument, passed as a string, will be utilized as a HTML section header `<h1>` before the table. Example:
 
 ```
-echo log_file.log | { cat ; echo ; } | sh /usr/local/bin/pfMailReport.sh -r 'Log Name'
+echo log_file.log | sh /usr/local/bin/pfMailReport.sh -r 'Log Name'
 ```  
 
 ## Future Development
