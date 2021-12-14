@@ -29,7 +29,7 @@ Below is the example command output sent via email:
 
 ## Command Options
 ![pfMailReport Command Output Options](https://github.com/jacobdjwilson/pfMailReport/blob/main/images/output_format.png)  
-Usage: cmd [-t] table columns [-r] table rows [-l] ordered list
+Usage: cmd [-t] table columns [-r] table rows [-l] unordered list
 
 * -c (optional) csv
 Change the default Internal Field Separator from FROM default (tabs or spaces) TO Comma Seperated Value data structure input.
@@ -41,7 +41,7 @@ An HTML formatted table that parses columns (tabs or spaces) and rows (new lines
 An HTML formatted table that parses ONLY rows (new lines) and avoids columns completely. This option still parses the first line of the command output for a table header.
 
 * -l list  
-An HTML ordered list that parses rows as list items. No header or column parsing is included with this option.
+An HTML unordered list that parses rows as list items. No header or column parsing is included with this option.
 
 * ‘Header String’  
 The secondary argument, passed as a string, will be utilized as a HTML section header `<h1>` before the table. Example:
