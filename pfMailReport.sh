@@ -52,6 +52,7 @@ Simple Example:
 cat /var/log/auth.log | sh /usr/local/bin/pfMailReport.sh -l 'Authentication Log'
 
 Comma Seperated Value Example:
+tail /var/log/pfblockerng/dnsbl.log | { cat ; echo ; } | sh /usr/local/bin/pfMailReport.sh -ct
 EOF
 }
 #
