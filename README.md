@@ -48,6 +48,6 @@ cat /var/log/auth.log | sh /usr/local/bin/pfMailReport.sh -r 'Authentication Log
 ```  
 
 ## Future Development
-* ~~ Ability to specify output stream delimiter~~
+* ~~Ability to specify output stream delimiter~~
  * Added CSV Support and usage examples
 * Visual data representations ie. graphing
