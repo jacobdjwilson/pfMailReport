@@ -33,8 +33,33 @@ even_row_color="#ddd"
 odd_row_color="#fff"
 font="Arial,sans-serif"
 #
+#!/bin/sh
+help() {
+cat << EOF
+Usage: cmd [-t] table columns [-r] table rows [-l] ordered list 'Section Header'
+
+pfMailReport wraps pfSense command output into a rich format HTML
+suitable for email via the mailreport package. Currently this project
+supports pfSense version 2.5.x, users can install this package and
+script through the WebUI.
+
+    -t Table    Format tabulated data into HTML table with columns
+    -r Rows     Format tabulated data into HTML table with rows
+    -l List     Format tabulated data into HTML ordered list
+
+Example:
+cat /var/log/auth.log | sh /usr/local/bin/pfMailReport.sh -r 'Authentication Log'
+EOF
+}
+#
 i=0 # global counter
-echo \<h1' 'style=\"color\:$section_header_text\;background\-color\:$section_header_background\;text\-align\:left\;font\-size\:2em\;width\:100\%\;font\-family\:$font\;\"\>$2\<\/h1\>
+if [ -n "$1" ]; then
+  if [ -n "$2" ]; then
+    echo \<h1' 'style=\"color\:$section_header_text\;background\-color\:$section_header_background\;text\-align\:left\;font\-size\:2em\;width\:100\%\;font\-family\:$font\;\"\>$2\<\/h1\>
+  fi
+else
+  echo "pfMailReport requires input from other commands. Try something like... echo log_file.log | sh /usr/local/bin/pfMailReport.sh -r 'Log Name' "
+fi
 while getopts ":trl" opt; do
   case ${opt} in
     t ) # input tabulated data into HTML table with columns
@@ -106,7 +131,13 @@ while getopts ":trl" opt; do
             echo \<\/ol\>
         done
     ;;
-    \? ) echo "Usage: cmd [-t] table columns [-r] table rows [-l] ordered list"
+    \? ) 
+      help >&2
+      exit 1
+    ;;
+    :)
+      help >&2
+      exit 1
     ;;
   esac
 done
