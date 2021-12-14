@@ -59,4 +59,5 @@ tail /var/log/pfblockerng/dnsbl.log | { cat ; echo ; } | sh /usr/local/bin/pfMai
 ## Future Development
 * ~~Ability to specify output stream delimiter~~
   * Added CSV Support and usage examples
+  * Added JSON key:value support
 * Visual data representations ie. graphing
