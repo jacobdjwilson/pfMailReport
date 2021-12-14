@@ -46,6 +46,7 @@ supports pfSense version 2.5.x, users can install this package and
 script through the WebUI.
 
     -c (optional)  Comma Seperated Value data structure input
+    -p (optional)  JSON Key Value Pair data structure input
     -t Table       Format tabulated data into HTML table with columns
     -r Rows        Format tabulated data into HTML table with rows
     -l List        Format tabulated data into HTML ordered list
@@ -65,7 +66,7 @@ if [ -n "$1" ]; then
 else
   echo "pfMailReport requires input from other commands. Try something like... echo log_file.log | sh /usr/local/bin/pfMailReport.sh -r 'Log Name' "
 fi
-while getopts ":ctrl" opt; do
+while getopts ":cptrl" opt; do
   case ${opt} in
     t ) # input tabulated data into HTML table with columns
         echo \<table' 'class=\"table\"' 'role\=\"presentation\"' 'style=\"width\:100\%\;border\-collapse\:collapse\;border\:0\;border\-spacing\:0\;\"\>
@@ -139,6 +140,10 @@ while getopts ":ctrl" opt; do
     c ) # comma seperated value input
       var=$IFS
       IFS=','
+    ;;
+    p ) # json key value pair input
+      var=$IFS
+      IFS=':'
     ;;
     \? ) 
       help >&2
