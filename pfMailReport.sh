@@ -33,7 +33,6 @@ even_row_color="#ddd"
 odd_row_color="#fff"
 font="Arial,sans-serif"
 #
-#!/bin/sh
 help() {
 cat << EOF
 Usage: cmd [-t] table columns [-r] table rows [-l] ordered list 'Section Header'
@@ -55,7 +54,6 @@ Comma Seperated Value Example:
 tail /var/log/pfblockerng/dnsbl.log | { cat ; echo ; } | sh /usr/local/bin/pfMailReport.sh -ct
 EOF
 }
-#
 i=0 # global counter
 if [ -n "$1" ]; then
   if [ -n "$2" ]; then
