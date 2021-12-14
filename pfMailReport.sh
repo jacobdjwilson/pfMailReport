@@ -38,7 +38,7 @@ line_margins="3px 0 3px 0"
 #
 help() {
 cat << EOF
-Usage: cmd [-t] table columns [-r] table rows [-l] ordered list 'Section Header'
+Usage: cmd [-t] table columns [-r] table rows [-l] unordered list 'Section Header'
 
 pfMailReport wraps pfSense command output into a rich format HTML
 suitable for email via the mailreport package. Currently this project
@@ -46,10 +46,10 @@ supports pfSense version 2.5.x, users can install this package and
 script through the WebUI.
 
     -c (optional)  Comma Seperated Value data structure input
-    -p (optional)  JSON Key Value Pair data structure input
+    -p (optional)  JSON Key Value Ppair data structure input
     -t Table       Format tabulated data into HTML table with columns
     -r Rows        Format tabulated data into HTML table with rows
-    -l List        Format tabulated data into HTML ordered list
+    -l List        Format tabulated data into HTML unordered list
 
 Simple Example:
 cat /var/log/auth.log | sh /usr/local/bin/pfMailReport.sh -l 'Authentication Log'
@@ -124,8 +124,8 @@ while getopts ":cptrl" opt; do
         echo \<\/tbody\>
         echo \<\/table\>
     ;;
-    l ) # input tabulated data into HTML ordered list
-        echo \<ol' 'class=\"list\-group' 'list\-group\-numbered\"' 'style=\"width\:100\%\"\>
+    l ) # input tabulated data into HTML unordered list
+        echo \<l' 'class=\"list\-group' 'list\-group\-numbered\"' 'style=\"width\:100\%\; list\-style\-type\:none\;\"\>
         while read -r line; do
             i=$(( i + 1 ))
                 if [ $((i%2)) -eq 0 ]
@@ -134,8 +134,8 @@ while getopts ":cptrl" opt; do
                 else
                     echo \<li' 'class=\"list\-group\-item\"' 'style=\"color\:$default_text\;background\-color\:$odd_row_color\;text\-align\:left\;\"\>\<p' 'style\=\"margin\:$line_margins\;font\-size\:$font_size\;line\-height\:$line_height\;font\-family\:$font_type\;\"\>$line\<\/p\>\<\/li\>
                 fi
-            echo \<\/ol\>
         done
+        echo \<\/ul\>
     ;;
     c ) # comma seperated value input
       var=$IFS
