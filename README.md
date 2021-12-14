@@ -31,6 +31,9 @@ Below is the example command output sent via email:
 ![pfMailReport Command Output Options](https://github.com/jacobdjwilson/pfMailReport/blob/main/images/output_format.png)  
 Usage: cmd [-t] table columns [-r] table rows [-l] ordered list
 
+* -c (optional) csv
+Change the default Internal Field Separator from FROM default (tabs or spaces) TO Comma Seperated Value data structure input.
+
 * -t table  
 An HTML formatted table that parses columns (tabs or spaces) and rows (new lines). By default the first line of the command output will be used for a table header.
 
@@ -42,9 +45,15 @@ An HTML ordered list that parses rows as list items. No header or column parsing
 
 * ‘Header String’  
 The secondary argument, passed as a string, will be utilized as a HTML section header `<h1>` before the table. Example:
+- - - -
 
+Simple Example:
 ```
-cat /var/log/auth.log | sh /usr/local/bin/pfMailReport.sh -r 'Authentication Log'
+cat /var/log/auth.log | sh /usr/local/bin/pfMailReport.sh -l 'Authentication Log'
+```
+Comma Seperated Value Example:
+```
+tail /var/log/pfblockerng/dnsbl.log | { cat ; echo ; } | sh /usr/local/bin/pfMailReport.sh -ct
 ```  
 
 ## Future Development
