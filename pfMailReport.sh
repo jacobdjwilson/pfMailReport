@@ -68,31 +68,26 @@ else
 fi
 while getopts ":cptrl" opt; do
   case ${opt} in
-    t ) # input tabulated data into HTML table with columns
         echo \<table' 'class=\"table\"' 'role\=\"presentation\"' 'style=\"width\:100\%\;border\-collapse\:collapse\;border\:0\;border\-spacing\:0\;\"\>
-        echo \<thread\>
+        echo \<thead\>
         while read line; do
             i=$(( i + 1 ))
             echo \<tr\>
             for item in $line; do
-                if [ $i -lt 2 ]
+                if [ $i -eq 1 ]
                 then
                 echo \<th' 'scope=\"col\"' 'style=\"color\:$table_header_text\;background\-color\:$table_header_background\;text\-align\:left\;\"\>\<p' 'style\=\"margin\:$line_margins\;font\-size\:$font_size\;line\-height\:$line_height\;font\-family\:$font_type\;\"\>$item\<\/p\>\<\/th\>
                 else
-                    if [ $((i%2)) -eq 0 ]
-                    then
-                        echo \<td' 'style=\"color\:$default_text\;background\-color\:$even_row_color\;text\-align\:left\;\"\>\<p' 'style\=\"margin\:$line_margins\;font\-size\:$font_size\;line\-height\:$line_height\;font\-family\:$font_type\;\"\>$item\<\/p\>\<\/td\>
-                    else
-                        echo \<td' 'style=\"color\:$default_text\;background\-color\:$odd_row_color\;text\-align\:left\;\"\>\<p' 'style\=\"margin\:$line_margins\;font\-size\:$font_size\;line\-height\:$line_height\;font\-family\:$font_type\;\"\>$item\<\/p\>\<\/td\>
-                    fi
+                    if [ $((i%2)) -eq 0 ] ; then row_color=$even_row_color; else row_color=$odd_row_color; fi
+                    echo \<td' 'style=\"color\:$default_text\;background\-color\:$row_color\;text\-align\:left\;\"\>\<p' 'style\=\"margin\:$line_margins\;font\-size\:$font_size\;line\-height\:$line_height\;font\-family\:$font_type\;\"\>$item\<\/p\>\<\/td\>
                 fi
             done
-            if [ $i -lt 2 ]
-            then
-                echo \<\/thread\>
-                echo \<tbody\>
-            fi
             echo \<\/tr\>
+            if [ $i -eq 1 ]
+            then
+            echo \<\/thead\>
+            echo \<tbody\>
+            fi
         done
         echo \<\/tbody\>
         echo \<\/table\>
