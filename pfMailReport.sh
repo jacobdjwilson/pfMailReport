@@ -68,8 +68,9 @@ else
 fi
 while getopts ":cptrl" opt; do
   case ${opt} in
+    t ) # input tabulated data into HTML table with columns
         echo \<table' 'class=\"table\"' 'role\=\"presentation\"' 'style=\"width\:100\%\;border\-collapse\:collapse\;border\:0\;border\-spacing\:0\;\"\>
-        echo \<thead\>
+        echo \<thread\>
         while read line; do
             i=$(( i + 1 ))
             echo \<tr\>
@@ -85,7 +86,7 @@ while getopts ":cptrl" opt; do
             echo \<\/tr\>
             if [ $i -eq 1 ]
             then
-            echo \<\/thead\>
+            echo \<\/thread\>
             echo \<tbody\>
             fi
         done
