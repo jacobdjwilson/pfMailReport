@@ -38,7 +38,7 @@ line_margins="3px 0 3px 0"
 #
 help() {
 cat << EOF
-Usage: cmd [-t] table columns [-r] table rows [-l] unordered list 'Section Header'
+Usage: cmd [-t] table columns [-p] table pairs [-r] table rows [-l] unordered list 'Section Header'
 
 pfMailReport wraps pfSense command output into a rich format HTML
 suitable for email via the mailreport package. Currently this project
@@ -46,10 +46,11 @@ supports pfSense version 2.5.x, users can install this package and
 script through the WebUI.
 
     -c (optional)  Comma Seperated Value data structure input
-    -p (optional)  JSON Key Value Ppair data structure input
+    -j (optional)  JSON Key Value Ppair data structure input
     -t Table       Format tabulated data into HTML table with columns
-    -r Rows        Format tabulated data into HTML table with rows
-    -l List        Format tabulated data into HTML unordered list
+    -p Pairs       Format paired data into HTML table with key and value column
+    -r Rows        Format data into HTML table with rows
+    -l List        Format unordered data into HTML unordered list
 
 Simple Example:
 cat /var/log/auth.log | sh /usr/local/bin/pfMailReport.sh -l 'Authentication Log'
@@ -58,7 +59,8 @@ Comma Seperated Value Example:
 tail /var/log/pfblockerng/dnsbl.log | { cat ; echo ; } | sh /usr/local/bin/pfMailReport.sh -ct
 EOF
 }
-i=0 # global counter
+i=0 # global line counter
+ii=0 # global item counter
 if [ -n "$1" ]; then
   if [ -n "$2" ]; then
     echo \<h1' 'style=\"color\:$section_header_text\;background\-color\:$section_header_background\;text\-align\:left\;font\-size\:2em\;width\:100\%\;font\-family\:$font_type\;\"\>$2\<\/h1\>
@@ -66,7 +68,7 @@ if [ -n "$1" ]; then
 else
   echo "pfMailReport requires input from other commands. Try something like... echo log_file.log | sh /usr/local/bin/pfMailReport.sh -r 'Log Name' "
 fi
-while getopts ":cptrl" opt; do
+while getopts ":cjptrl" opt; do
   case ${opt} in
     t ) # input tabulated data into HTML table with columns
         echo \<table' 'class=\"table\"' 'role\=\"presentation\"' 'style=\"width\:100\%\;border\-collapse\:collapse\;border\:0\;border\-spacing\:0\;\"\>
@@ -93,7 +95,42 @@ while getopts ":cptrl" opt; do
         echo \<\/tbody\>
         echo \<\/table\>
     ;;
-    r ) # input tabulated data into HTML table with rows
+
+    #### This is broken Currently. Second for loop has an issue. ####
+    # p ) # input paired data into HTML table with columns
+    #     echo \<table' 'class=\"table\"' 'role\=\"presentation\"' 'style=\"width\:100\%\;border\-collapse\:collapse\;border\:0\;border\-spacing\:0\;\"\>
+    #     echo \<thread\>
+    #     while read line; do
+    #         i=$(( i + 1 ))
+    #         echo \<tr\>
+    #         for item in $line; do
+    #             ii=$(( ii + 1 ))
+    #             if [ $i -eq 1 ]
+    #             then
+    #             echo \<th' 'scope=\"col\"' 'style=\"color\:$table_header_text\;background\-color\:$table_header_background\;text\-align\:left\;\"\>\<p' 'style\=\"margin\:$line_margins\;font\-size\:$font_size\;line\-height\:$line_height\;font\-family\:$font_type\;\"\>$item\<\/p\>\<\/th\>
+    #             fi
+    #             if [ $((i%2)) -eq 0 ] ; then row_color=$even_row_color; else row_color=$odd_row_color; fi
+    #             for ii in $i; do
+    #                 if [ $ii -lt 3 ]
+    #                 then
+    #                 echo \<td' 'style=\"color\:$default_text\;background\-color\:$row_color\;text\-align\:left\;\"\>\<p' 'style\=\"margin\:$line_margins\;font\-size\:$font_size\;line\-height\:$line_height\;font\-family\:$font_type\;\"\>$item\<\/p\>\<\/td\>
+    #                 else
+    #                 echo \<p\>\<td\>$item
+    #                 fi
+    #             done
+    #             echo <\/p\>\<\/td\>
+    #         done
+    #         echo \<\/tr\>
+    #         if [ $i -eq 1 ]
+    #         then
+    #         echo \<\/thread\>
+    #         echo \<tbody\>
+    #         fi
+    #     done
+    #     echo \<\/tbody\>
+    #     echo \<\/table\>
+    # ;;
+    r ) # input data into HTML table with rows
         echo \<table' 'class=\"table\"' 'role\=\"presentation\"' 'style=\"width\:100\%\;border\-collapse\:collapse\;border\:0\;border\-spacing\:0\;\"\>
         echo \<thread\>
         while read -r line; do
@@ -120,8 +157,8 @@ while getopts ":cptrl" opt; do
         echo \<\/tbody\>
         echo \<\/table\>
     ;;
-    l ) # input tabulated data into HTML unordered list
-        echo \<l' 'class=\"list\-group' 'list\-group\-numbered\"' 'style=\"width\:100\%\; list\-style\-type\:none\;\"\>
+    l ) # input data into HTML unordered list
+        echo \<ul' 'class=\"list\-group' 'style=\"width\:100\%\; list\-style\-type\:none\;\"\>
         while read -r line; do
             i=$(( i + 1 ))
                 if [ $((i%2)) -eq 0 ]
@@ -137,7 +174,7 @@ while getopts ":cptrl" opt; do
       var=$IFS
       IFS=','
     ;;
-    p ) # json key value pair input
+    j ) # json key value pair input
       var=$IFS
       IFS=':'
     ;;
