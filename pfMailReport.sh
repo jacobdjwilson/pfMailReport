@@ -46,7 +46,7 @@ supports pfSense version 2.5.x, users can install this package and
 script through the WebUI.
 
     -c (optional)  Comma Seperated Value data structure input
-    -p (optional)  JSON Key Value Ppair data structure input
+    -p (optional)  JSON Key Value pair data structure input
     -t Table       Format tabulated data into HTML table with columns
     -r Rows        Format tabulated data into HTML table with rows
     -l List        Format tabulated data into HTML unordered list
@@ -121,7 +121,7 @@ while getopts ":cptrl" opt; do
         echo \<\/table\>
     ;;
     l ) # input tabulated data into HTML unordered list
-        echo \<l' 'class=\"list\-group' 'list\-group\-numbered\"' 'style=\"width\:100\%\; list\-style\-type\:none\;\"\>
+        echo \<ul' 'class=\"list\-group' 'list\-group\-numbered\"' 'style=\"width\:100\%\; list\-style\-type\:none\;\"\>
         while read -r line; do
             i=$(( i + 1 ))
                 if [ $((i%2)) -eq 0 ]
