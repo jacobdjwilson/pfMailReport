@@ -61,3 +61,4 @@ tail /var/log/pfblockerng/dnsbl.log | { cat ; echo ; } | sh /usr/local/bin/pfMai
   * Added CSV Support and usage examples
   * Added JSON key:value support
 * Visual data representations ie. graphing
+  * Added quickchart.io example to development code branch
