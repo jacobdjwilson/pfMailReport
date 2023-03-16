@@ -8,7 +8,7 @@ curl https://raw.githubusercontent.com/jacobdjwilson/nmap-email-xsl/main/nmap-em
 # Step 3: Schedule a CRON job to perform the scan prior to the email report
 # Services > CRON > Add 
 # I suggest allocating 15+ minutes. Please change nmap flags for you use case
-netstat -rn | grep -m 1 "em1" | awk '{print $1}' | xargs nmap -sS -T4 -A -sC -oX /tmp/nmap-scan.xml
+netstat -rn | grep -m 1 "em1" | awk '{print $1}' | xargs nmap -sS -P0 -O -T3 -A -sC --script-args http.useragent="Mozilla/5.0" -e em1 -oX /tmp/nmap-scan.xml
 #
 # Step 4: Add the processing command to your scheduled email report
 xsltproc /tmp/nmap-email.xsl /tmp/nmap-scan.xml
